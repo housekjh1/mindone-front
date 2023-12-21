@@ -1,25 +1,10 @@
-import BigDiv from "./comm/BigDiv"
+import Mapper from './comm/Mapper';
 
 const Main = () => {
     return (
-        <div className="flex flex-col justify-center items-center gap-5">
-            <div className="flex flex-row gap-5">
-            <BigDiv caption='1'/>
-            <BigDiv caption='1'/>
-            <BigDiv caption='1'/>
-            <BigDiv caption='정수장'/>
-            <BigDiv caption='1'/>
-            <BigDiv caption='1'/>
-            <BigDiv caption='1'/>
-            </div>
-            <div>
-                <div>2</div>
-                <div>2</div>
-                <div>2</div>
-                <div>2</div>
-                <div>2</div>
-                <div>2</div>
-                <div>2</div>
+        <div className='bg-gradient-to-br from-blue-50 to-blue-200 h-[116.25%]'>
+            <div className="flex justify-center items-center">
+                <Mapper />
             </div>
         </div>
     )
