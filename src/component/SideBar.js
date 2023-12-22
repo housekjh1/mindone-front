@@ -9,7 +9,7 @@ const SideBar = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth <= 1800) {
+      if (window.innerWidth <= 1537) {
         setSidebarOpen(false);
         setState(false);
       } else {

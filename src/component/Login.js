@@ -32,9 +32,9 @@ const Login = () => {
     // };
 
     return (
-        <div className="flex justify-center w-[1520px] bg-gradient-to-br from-blue-50 to-blue-200">
-            <div className="mt-10">
-                <div className="bg-gradient-to-br from-white from-5% via-green-50 via-30% to-indigo-100 to-95% border border-blue-100 rounded-lg w-[300px] h-[300px] overflow-hidden">
+        <div className="flex justify-center w-full h-[837px] bg-gradient-to-br from-blue-50 to-blue-200">
+            <div className="mt-[100px]">
+                <div className="bg-blue-50 border-0 rounded-lg w-[300px] h-[300px] overflow-hidden shadow-[0px_0px_40px_-10px_rgba(0,0,0,0.3)]">
                     <div className="flex flex-col justify-center items-center">
                         <div className="bg-[#0b3565] w-full h-[85px]"><p className="text-3xl font-bold text-white text-center pt-[20px]">Login</p></div>
                         {/* <Link to="http://10.125.121.217:8080/auth/naver"><div className="mt-10 mb-10">네이버 OAuth2</div></Link> */}
