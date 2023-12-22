@@ -10,10 +10,13 @@ function App() {
     <RecoilRoot>
       <BrowserRouter>
         <Nav />
-        <Routes>
-          <Route path="/" element={<div className="flex"><div className="hidden 2xl:flex w-1/5 justify-center"><SideBar /></div><div className="flex-1 justify-center items-center"><Main /></div></div>}></Route>
-          <Route path="/login" element={<Login />}></Route>
-        </Routes>
+        <div className="flex w-fit h-[837px]">
+          <SideBar />
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </div>
       </BrowserRouter>
     </RecoilRoot>
   );
