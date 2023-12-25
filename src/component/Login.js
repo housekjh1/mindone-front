@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import Naver from '../static/img/Naver.png';
 
 const Login = () => {
     // const fetchData = async () => {
@@ -37,7 +38,12 @@ const Login = () => {
                 <div className="bg-blue-50 border-0 rounded-lg w-[300px] h-[300px] overflow-hidden shadow-[0px_0px_40px_-10px_rgba(0,0,0,0.3)]">
                     <div className="flex flex-col justify-center items-center">
                         <div className="bg-[#0b3565] w-full h-[85px]"><p className="text-3xl font-bold text-white text-center pt-[20px]">Login</p></div>
-                        {/* <Link to="http://10.125.121.217:8080/auth/naver"><div className="mt-10 mb-10">네이버 OAuth2</div></Link> */}
+                        <Link to="http://10.125.121.217:8080/auth/naver">
+                            <div className="mt-[80px] flex justify-center items-center gap-1">
+                                <img className="w-[50px] h-[50px] rounded" src={Naver} />
+                                <p className="flex justify-center items-center bg-gradient-to-b from-[#03E965] to-[#03B964] rounded w-[190px] h-[50px] text-white text-lg font-bold">네이버로 로그인하기</p>
+                            </div>
+                        </Link>
                     </div>
                 </div>
             </div>
