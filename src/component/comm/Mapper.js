@@ -4,6 +4,14 @@ import Indicator from './Indicator';
 import Indicator_Test from './Indicator_Test';
 import { useState } from 'react';
 import { FaWindowClose } from "react-icons/fa";
+import BarR from './BarR';
+import BarR2 from './BarR2';
+import BarR3 from './BarR3';
+import BarL from './BarL';
+import BarL2 from './BarL2';
+import BarL4 from './BarL4';
+import BarDown from './BarDown';
+import BarDown2 from './BarDown2';
 
 const Mapper = () => {
     const [openModal, setOpenModal] = useState(false);
@@ -76,6 +84,47 @@ const Mapper = () => {
                     <Indicator left={495} top={534} width={58} height={45} handleClick={() => handleHotspotClick('O분기')} />
                     <Indicator left={671} top={563} width={57} height={44} handleClick={() => handleHotspotClick('N분기')} />
                     <Indicator left={886} top={532} width={58} height={44} handleClick={() => handleHotspotClick('M분기')} />
+
+                    <BarDown left={466} top={110} width={3} height={30} bar={6} delayTime={600} blue={30} anime={3600} />
+                    <BarL left={466} top={107} width={49} height={3} bar={6} delayTime={500} blue={20} anime={3000} />
+                    <BarL left={573} top={107} width={67} height={3} bar={6} delayTime={500} blue={15} anime={3000} />
+                    <BarDown left={653} top={77} width={3} height={18} bar={6} delayTime={600} blue={50} anime={3600} />
+                    <BarR left={669} top={107} width={112} height={3} bar={6} delayTime={500} blue={10} anime={3000} />
+                    <BarR left={840} top={107} width={57} height={3} bar={6} delayTime={500} blue={20} anime={3000} />
+                    <BarDown left={653} top={123} width={3} height={64} bar={6} delayTime={600} blue={17.5} anime={3600} />
+                    <BarR left={656} top={180} width={74} height={3} bar={6} delayTime={500} blue={15} anime={3000} />
+                    <BarR2 left={789} top={180} width={188} height={3} bar={12} delayTime={500} blue={6.125} anime={6000} />
+                    <BarDown left={653} top={232} width={3} height={108} bar={6} delayTime={600} blue={10} anime={3600} />
+                    <BarDown left={915} top={183} width={3} height={63} bar={6} delayTime={600} blue={17.5} anime={3600} />
+                    <BarDown left={1005} top={196} width={3} height={9} bar={6} delayTime={700} blue={75} anime={4200} />
+                    <BarL left={975} top={205} width={31} height={3} bar={6} delayTime={600} blue={35} anime={3600} />
+                    <BarR left={1006} top={205} width={32} height={3} bar={6} delayTime={600} blue={35} anime={3600} />
+                    <BarL left={447} top={261} width={86} height={3} bar={6} delayTime={600} blue={12.5} anime={3600} />
+                    <BarL left={591} top={261} width={62} height={3} bar={6} delayTime={600} blue={17.5} anime={3600} />
+                    <BarR left={656} top={261} width={25} height={3} bar={6} delayTime={700} blue={40} anime={4200} />
+                    <BarR left={739} top={261} width={25} height={3} bar={6} delayTime={700} blue={40} anime={4200} />
+                    <BarDown left={447} top={264} width={3} height={25} bar={6} delayTime={600} blue={40} anime={3600} />
+                    <BarL left={416} top={289} width={33} height={3} bar={6} delayTime={700} blue={30} anime={4200} />
+                    <BarR left={449} top={289} width={34} height={3} bar={6} delayTime={700} blue={30} anime={4200} />
+                    <BarL left={613} top={337} width={40} height={3} bar={6} delayTime={600} blue={27.5} anime={3600} />
+                    <BarL2 left={678} top={310} width={127} height={3} bar={12} delayTime={500} blue={8.75} anime={6000} />
+                    <BarL left={864} top={310} width={51} height={3} bar={6} delayTime={600} blue={22.5} anime={3600} />
+                    <BarDown2 left={915} top={292} width={3} height={239} bar={12} delayTime={500} blue={5} anime={6000} />
+                    <BarDown left={582} top={362} width={3} height={81} bar={6} delayTime={600} blue={15} anime={3600} />
+                    <BarDown left={678} top={313} width={3} height={59} bar={6} delayTime={600} blue={18.75} anime={3600} />
+                    <BarDown left={750} top={313} width={3} height={13} bar={6} delayTime={700} blue={62.5} anime={4200} />
+                    <BarR left={918} top={336} width={39} height={3} bar={6} delayTime={600} blue={27.5} anime={3600} />
+                    <BarR left={1015} top={334} width={103} height={3} bar={6} delayTime={550} blue={10.625} anime={3300} />
+                    <BarDown2 left={1058} top={337} width={3} height={138} bar={12} delayTime={500} blue={8.75} anime={6000} />
+                    <BarDown left={1115} top={337} width={3} height={48} bar={6} delayTime={600} blue={25} anime={3600} />
+                    <BarL2 left={397} top={443} width={187} height={3} bar={12} delayTime={550} blue={6.25} anime={6600} />
+                    <BarR3 left={584} top={443} width={278} height={3} bar={18} delayTime={550} blue={4.375} anime={9900} />
+                    <BarL4 left={523} top={520} width={392} height={3} bar={24} delayTime={550} blue={3.125} anime={13200} />
+                    <BarDown left={523} top={523} width={3} height={11} bar={6} delayTime={700} blue={75} anime={4200} />
+                    <BarDown left={604} top={523} width={3} height={29} bar={6} delayTime={600} blue={30} anime={3600} />
+                    <BarDown left={698} top={523} width={3} height={39} bar={6} delayTime={600} blue={22.5} anime={3600} />
+                    <BarDown left={523} top={579} width={3} height={19} bar={6} delayTime={600} blue={40} anime={3600} />
+                    <BarDown left={698} top={608} width={3} height={25} bar={6} delayTime={600} blue={35} anime={3600} />
                 </div>
             </div>
             <Modal open={openModal}>

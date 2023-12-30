@@ -5,7 +5,7 @@ import { sideBarState, sideBarToggle } from "./Atoms";
 const SideBar = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
   const [state, setState] = useRecoilState(sideBarState);
-  const toggle = useRecoilValue(sideBarToggle);
+  const [toggle, setToggle] = useRecoilState(sideBarToggle);
 
   let currentTime = new Date();
   let y = currentTime.getFullYear();
@@ -18,6 +18,7 @@ const SideBar = () => {
       if (window.innerWidth <= 1537) {
         setSidebarOpen(false);
         setState(false);
+        setToggle(false);
       } else {
         setSidebarOpen(true);
         setState(true);
