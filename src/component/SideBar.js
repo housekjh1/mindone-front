@@ -18,10 +18,10 @@ const SideBar = () => {
       if (window.innerWidth <= 1537) {
         setSidebarOpen(false);
         setState(false);
-        setToggle(false);
       } else {
         setSidebarOpen(true);
         setState(true);
+        setToggle(false);
       }
     };
 
