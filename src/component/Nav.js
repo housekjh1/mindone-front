@@ -1,19 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import logo_white from '../static/img/hd_logo.png';
 import logo_blue from '../static/img/hd_logo_ov.png';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { isLoggedIn, sideBarState, sideBarToggle, userInfo } from './Atoms';
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Link } from 'react-router-dom';
-import { Box, Modal } from '@mui/material';
-import { FaWindowClose } from "react-icons/fa";
 
 const Nav = () => {
     const [isHovered, setIsHovered] = useState(false);
     const state = useRecoilValue(sideBarState);
     const [toggle, setToggle] = useRecoilState(sideBarToggle);
     const [login, setLogin] = useRecoilState(isLoggedIn);
-    const info = useRecoilValue(userInfo);
+    const [info, setInfo] = useRecoilState(userInfo);
     const [sticker, setSticker] = useState(false);
 
     const hoverOver = () => {
@@ -39,6 +37,7 @@ const Nav = () => {
         })
             .then(() => {
                 setLogin(false);
+                setInfo();
                 setSticker(false);
             })
             .catch(error => {
