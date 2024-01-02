@@ -10,7 +10,9 @@ const SideBar = () => {
   let currentTime = new Date();
   let y = currentTime.getFullYear();
   let m = currentTime.getMonth() + 1;
+  m = m > 10 ? m : `0${m}`;
   let d = currentTime.getDate();
+  d = d > 10 ? d : `0${d}`;
   let h = currentTime.getHours();
 
   useEffect(() => {
