@@ -1,5 +1,6 @@
 import { Box, Modal } from '@mui/material';
 import MainGround from '../../static/img/MainGround.png';
+import MainGround2 from '../../static/img/MainGround_2.png';
 import Indicator from './Indicator';
 import Indicator_Test from './Indicator_Test';
 import { useState } from 'react';
@@ -22,7 +23,7 @@ const Mapper = () => {
 
     const handleHotspotClick = (x) => {
         setModalTag(
-            <div>{x} 예측 대시보드</div>
+            <div className='text-xl font-bold text-center'>{x} 예측 대시보드</div>
         );
         setOpenModal(true);
     };
@@ -44,7 +45,7 @@ const Mapper = () => {
         <div>
             <div className='relative mt-10'>
                 <div className='flex justify-center w-[1520px] h-[700px]'>
-                    <img src={MainGround} alt='MainGround' />
+                    <img src={MainGround2} alt='MainGround2' />
                     <Indicator left={436} top={140} width={57} height={38} handleClick={() => handleHotspotClick('G배수지')} />
                     <Indicator left={927} top={91} width={57} height={38} handleClick={() => handleHotspotClick('A배수지')} />
                     <Indicator left={795} top={244} width={57} height={38} handleClick={() => handleHotspotClick('D배수지')} />
@@ -69,7 +70,7 @@ const Mapper = () => {
                     <Indicator left={498} top={626} width={56} height={38} handleClick={() => handleHotspotClick('W배수지')} />
                     <Indicator left={672} top={662} width={57} height={38} handleClick={() => handleHotspotClick('U배수지')} />
 
-                    <Indicator left={515} top={86} width={58} height={45} handleClick={() => handleHotspotClick('F분기')} />
+                    {/* <Indicator left={515} top={86} width={58} height={45} handleClick={() => handleHotspotClick('F분기')} />
                     <Indicator left={782} top={88} width={57} height={44} handleClick={() => handleHotspotClick('A분기')} />
                     <Indicator left={731} top={159} width={57} height={45} handleClick={() => handleHotspotClick('D분기')} />
                     <Indicator left={626} top={187} width={58} height={45} handleClick={() => handleHotspotClick('E분기')} />
@@ -83,7 +84,7 @@ const Mapper = () => {
                     <Indicator left={957} top={316} width={58} height={44} handleClick={() => handleHotspotClick('K분기')} />
                     <Indicator left={495} top={534} width={58} height={45} handleClick={() => handleHotspotClick('O분기')} />
                     <Indicator left={671} top={563} width={57} height={44} handleClick={() => handleHotspotClick('N분기')} />
-                    <Indicator left={886} top={532} width={58} height={44} handleClick={() => handleHotspotClick('M분기')} />
+                    <Indicator left={886} top={532} width={58} height={44} handleClick={() => handleHotspotClick('M분기')} /> */}
 
                     <BarDown left={466} top={110} width={3} height={30} bar={6} delayTime={600} blue={30} anime={3600} />
                     <BarL left={466} top={107} width={49} height={3} bar={6} delayTime={500} blue={20} anime={3000} />
