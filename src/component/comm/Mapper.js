@@ -4,7 +4,7 @@ import MainGround2 from '../../static/img/MainGround_2.png';
 import MainGround3 from '../../static/img/MainGround_3.png';
 import Indicator from './Indicator';
 import Indicator_Test from './Indicator_Test';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { FaWindowClose } from "react-icons/fa";
 import BarR from './BarR';
 import BarR2 from './BarR2';
@@ -14,17 +14,65 @@ import BarL2 from './BarL2';
 import BarL4 from './BarL4';
 import BarDown from './BarDown';
 import BarDown2 from './BarDown2';
+import { getValue } from '@testing-library/user-event/dist/utils';
 
 const Mapper = () => {
     const [openModal, setOpenModal] = useState(false);
     const [modalTag, setModalTag] = useState();
+    const dt = useRef();
+    const selHour = useRef();
+    const selMinute = useRef();
+
     const closeModal = () => {
         setOpenModal(false);
     }
 
+    const hour = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"];
+    const minute = ["00", "10", "20", "30", "40", "50"];
+
+    const optHour = hour.map((item, idx) => {
+        return (<option key={`hour${idx}`} value={item}>{item}</option>);
+    });
+
+    const optMinute = minute.map((item, idx) => {
+        return (<option key={`minute${idx}`} value={item}>{item}</option>);
+    });
+
+    const handlePredict = (e) => {
+        e.preventDefault();
+        if (dt.current.value.trim() === '') {
+            alert("날짜를 입력해 주세요.");
+            return;
+        } else if (selHour.current.value.trim() === '') {
+            alert("시간을 입력해 주세요.");
+        } else if (selMinute.current.value.trim() === '') {
+            alert("분을 입력해 주세요.");
+        } else {
+            console.log(`${dt.current.value}T${selHour.current.value}:${selMinute.current.value}`);
+        }
+    }
+
     const handleHotspotClick = (x) => {
         setModalTag(
-            <div className='text-xl font-bold text-center'>{x} 예측 대시보드</div>
+            <div>
+                <div className='text-xl font-bold text-center'>{x} 유출유량 예측 대시보드</div>
+                <div className=' mt-[30px] w-[1100px] h-[470px]'>
+                    <form>
+                        <div className='flex flex-row gap-2.5'>
+                            <input ref={dt} className='border-2' type='date' id='dt' name='dt' />
+                            <select ref={selHour} className='border-2' id='selHour' name='selHour' >
+                                <option value=''>-- 시간 선택 --</option>
+                                {optHour}
+                            </select>
+                            <select ref={selMinute} className='border-2' id='selMinute' name='selMinute' >
+                                <option value=''>-- 분 선택 --</option>
+                                {optMinute}
+                            </select>
+                            <button className='bg-[#0b3565] text-white font-[1000] py-[2px] px-[5px]' onClick={(e) => handlePredict(e)}>조회</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         );
         setOpenModal(true);
     };
