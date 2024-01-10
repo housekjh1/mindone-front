@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { sideBarState, sideBarToggle } from "./Atoms";
 
 const SideBar = () => {
@@ -10,10 +10,11 @@ const SideBar = () => {
   let currentTime = new Date();
   let y = currentTime.getFullYear();
   let m = currentTime.getMonth() + 1;
-  m = m > 10 ? m : `0${m}`;
+  m = m >= 10 ? m : `0${m}`;
   let d = currentTime.getDate();
-  d = d > 10 ? d : `0${d}`;
+  d = d >= 10 ? d : `0${d}`;
   let h = currentTime.getHours();
+  h = h >= 10 ? h : `0${h}`;
 
   useEffect(() => {
     const handleResize = () => {

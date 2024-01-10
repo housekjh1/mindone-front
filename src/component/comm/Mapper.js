@@ -1,6 +1,7 @@
 import { Box, Modal } from '@mui/material';
 import MainGround from '../../static/img/MainGround.png';
 import MainGround2 from '../../static/img/MainGround_2.png';
+import MainGround3 from '../../static/img/MainGround_3.png';
 import Indicator from './Indicator';
 import Indicator_Test from './Indicator_Test';
 import { useState } from 'react';
@@ -45,10 +46,10 @@ const Mapper = () => {
         <div>
             <div className='relative mt-10'>
                 <div className='flex justify-center w-[1520px] h-[700px]'>
-                    <img src={MainGround2} alt='MainGround2' />
+                    <img src={MainGround3} alt='MainGround3' />
                     <Indicator left={436} top={140} width={57} height={38} handleClick={() => handleHotspotClick('G배수지')} />
                     <Indicator left={927} top={91} width={57} height={38} handleClick={() => handleHotspotClick('A배수지')} />
-                    <Indicator left={795} top={244} width={57} height={38} handleClick={() => handleHotspotClick('D배수지')} />
+                    <Indicator left={794} top={244} width={56} height={38} handleClick={() => handleHotspotClick('D배수지')} />
                     <Indicator left={951} top={235} width={57} height={38} handleClick={() => handleHotspotClick('C배수지')} />
                     <Indicator left={1008} top={235} width={57} height={38} handleClick={() => handleHotspotClick('B배수지')} />
                     <Indicator left={393} top={320} width={57} height={38} handleClick={() => handleHotspotClick('E배수지')} />
