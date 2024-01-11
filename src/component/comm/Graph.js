@@ -9,6 +9,8 @@ const Graph = ({ datas }) => {
     const mse = datas.mse;
     const mae = datas.mae;
     const r2 = datas.r2;
+    const pool = datas.pool;
+
     const data = {
         labels: dateTime,
         datasets: [
@@ -48,12 +50,12 @@ const Graph = ({ datas }) => {
     };
 
     return (
-        <div className='flex flex-col justify-center items-center'>
-            <div className='w-[700px] h-[350px]'>
+        <div className='w-[1000px] h-[400px] flex flex-col justify-center items-center gap-2'>
+            <div className='flex justify-center items-center w-[1000px] h-[400px]'>
                 <Line data={data} options={options} />
             </div>
-            <div className='mt-[12px] text-center text-[12px] font-[1000]'>
-                MSE : {mse}, MAE : {mae}, R² : {r2}
+            <div className='text-center text-[12px] font-[1000] mt-[5px]'>
+                배수지 : {pool}, 단위 : ㎡/h, MSE : {mse}, MAE : {mae}, R² : {r2}
             </div>
         </div>
     );
