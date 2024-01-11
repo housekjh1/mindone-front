@@ -1,10 +1,8 @@
 import { Box, Modal } from '@mui/material';
 import MainGround from '../../static/img/MainGround.png';
-import MainGround2 from '../../static/img/MainGround_2.png';
-import MainGround3 from '../../static/img/MainGround_3.png';
 import Indicator from './Indicator';
 import Indicator_Test from './Indicator_Test';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FaWindowClose } from "react-icons/fa";
 import BarR from './BarR';
 import BarR2 from './BarR2';
@@ -14,14 +12,16 @@ import BarL2 from './BarL2';
 import BarL4 from './BarL4';
 import BarDown from './BarDown';
 import BarDown2 from './BarDown2';
-import { getValue } from '@testing-library/user-event/dist/utils';
+import Graph from './Graph';
 
 const Mapper = () => {
     const [openModal, setOpenModal] = useState(false);
     const [modalTag, setModalTag] = useState();
+    const [graphTag, setGraphTag] = useState();
     const dt = useRef();
     const selHour = useRef();
     const selMinute = useRef();
+    const [selectedX, setSelectedX] = useState('');
 
     const closeModal = () => {
         setOpenModal(false);
@@ -38,25 +38,55 @@ const Mapper = () => {
         return (<option key={`minute${idx}`} value={item}>{item}</option>);
     });
 
-    const handlePredict = (e) => {
+    const fetchPredict = async (pool, predictTime) => {
+        try {
+            setGraphTag(<div>로딩 중...</div>);
+            const url = `${process.env.REACT_APP_SERVER}predict?pool=${pool}&date=${predictTime}`;
+            const resp = await fetch(url, {
+                method: 'GET',
+            });
+            if (!resp.ok) {
+                console.log("fetch error");
+                setGraphTag(<div>데이터를 불러오는 데 실패했습니다.</div>);
+            }
+            const datas = await resp.json();
+            setGraphTag(<Graph datas={datas} />);
+        } catch (e) {
+            setGraphTag(<div>fetch 오류</div>);
+            console.log(e);
+        }
+    }
+
+    const handlePredict = (e, x) => {
         e.preventDefault();
         if (dt.current.value.trim() === '') {
             alert("날짜를 입력해 주세요.");
             return;
         } else if (selHour.current.value.trim() === '') {
             alert("시간을 입력해 주세요.");
+            return;
         } else if (selMinute.current.value.trim() === '') {
             alert("분을 입력해 주세요.");
+            return;
         } else {
-            console.log(`${dt.current.value}T${selHour.current.value}:${selMinute.current.value}`);
+            let pool = x.slice(0, 1)
+            let predictTime = `${dt.current.value}T${selHour.current.value}:${selMinute.current.value}`;
+            fetchPredict(pool, predictTime);
+            return;
         }
     }
 
     const handleHotspotClick = (x) => {
+        setGraphTag();
+        setSelectedX(x);
+        setOpenModal(true);
+    };
+
+    useEffect(() => {
         setModalTag(
             <div>
-                <div className='text-xl font-bold text-center'>{x} 유출유량 예측 대시보드</div>
-                <div className=' mt-[30px] w-[1100px] h-[470px]'>
+                <div className='text-xl font-bold text-center'>{selectedX} 유출유량 예측 대시보드</div>
+                <div className='border-[#0b3565] border-[2px] rounded mt-[30px] w-[1100px] h-[470px] flex flex-col justify-center items-center'>
                     <form>
                         <div className='flex flex-row gap-2.5'>
                             <input ref={dt} className='border-2' type='date' id='dt' name='dt' />
@@ -68,14 +98,16 @@ const Mapper = () => {
                                 <option value=''>-- 분 선택 --</option>
                                 {optMinute}
                             </select>
-                            <button className='bg-[#0b3565] text-white font-[1000] py-[2px] px-[5px]' onClick={(e) => handlePredict(e)}>조회</button>
+                            <button className='bg-[#0b3565] rounded text-white font-[1000] py-[2px] px-[5px]' onClick={(e) => handlePredict(e, selectedX)}>조회</button>
                         </div>
                     </form>
+                    <div className='w-[1000px] h-[400px] mt-[12px] flex justify-center items-center'>
+                        {graphTag}
+                    </div>
                 </div>
             </div>
         );
-        setOpenModal(true);
-    };
+    }, [selectedX, graphTag]);
 
     const style = {
         position: 'absolute',
@@ -94,7 +126,7 @@ const Mapper = () => {
         <div>
             <div className='relative mt-10'>
                 <div className='flex justify-center w-[1520px] h-[700px]'>
-                    <img src={MainGround3} alt='MainGround3' />
+                    <img src={MainGround} alt='MainGround' />
                     <Indicator left={436} top={140} width={57} height={38} handleClick={() => handleHotspotClick('G배수지')} />
                     <Indicator left={927} top={91} width={57} height={38} handleClick={() => handleHotspotClick('A배수지')} />
                     <Indicator left={794} top={244} width={56} height={38} handleClick={() => handleHotspotClick('D배수지')} />
