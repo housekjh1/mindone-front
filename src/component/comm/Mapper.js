@@ -13,6 +13,8 @@ import BarL4 from './BarL4';
 import BarDown from './BarDown';
 import BarDown2 from './BarDown2';
 import Graph from './Graph';
+import { useRecoilValue } from 'recoil';
+import { userInfo } from '../Atoms';
 
 const Mapper = () => {
     const [openModal, setOpenModal] = useState(false);
@@ -22,6 +24,7 @@ const Mapper = () => {
     const selHour = useRef();
     const selMinute = useRef();
     const [selectedX, setSelectedX] = useState('');
+    const info = useRecoilValue(userInfo);
 
     const closeModal = () => {
         setOpenModal(false);
@@ -64,6 +67,30 @@ const Mapper = () => {
         }
     }
 
+    const fetchSetLog = async (pool, predictTime) => {
+        try {
+            const res = await fetch('https://api64.ipify.org?format=json');
+            const getIp = await res.json();
+            const url = `${process.env.REACT_APP_SERVER}log`;
+            const formData = new FormData();
+            formData.append("name", info.name);
+            formData.append("ip", getIp.ip);
+            formData.append("poolCode", pool);
+            formData.append("predictTime", predictTime);
+            const resp = await fetch(url, {
+                method: 'POST',
+                body: formData,
+            });
+            if (!resp.ok) {
+                console.log("Failed to set log.");
+                return;
+            }
+        } catch (e) {
+            console.log("fetchSetLog error.");
+            return;
+        }
+    }
+
     const handlePredict = (e, x) => {
         e.preventDefault();
         if (dt.current.value.trim() === '') {
@@ -79,6 +106,7 @@ const Mapper = () => {
             let pool = x.slice(0, 1)
             let predictTime = `${dt.current.value}T${selHour.current.value}:${selMinute.current.value}`;
             fetchPredict(pool, predictTime);
+            fetchSetLog(pool, predictTime);
             return;
         }
     }

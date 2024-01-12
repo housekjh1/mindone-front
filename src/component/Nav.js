@@ -5,6 +5,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { isLoggedIn, sideBarState, sideBarToggle, userInfo } from './Atoms';
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Link } from 'react-router-dom';
+import { Box, Modal } from '@mui/material';
 
 const Nav = () => {
     const [isHovered, setIsHovered] = useState(false);
@@ -13,6 +14,8 @@ const Nav = () => {
     const [login, setLogin] = useRecoilState(isLoggedIn);
     const [info, setInfo] = useRecoilState(userInfo);
     const [sticker, setSticker] = useState(false);
+    const [openModal, setOpenModal] = useState(false);
+    const [modalTag, setModalTag] = useState();
 
     const hoverOver = () => {
         setIsHovered(true);
@@ -45,6 +48,33 @@ const Nav = () => {
             });
     }
 
+    const handleLogPage = () => {
+        setOpenModal(true);
+        fetchGetLog();
+    }
+
+    const closeModal = () => {
+        setOpenModal(false);
+    }
+
+    const fetchGetLog = async () => {
+        try {
+            const url = `${process.env.REACT_APP_SERVER}log`;
+            const resp = await fetch(url, {
+                method: 'GET',
+            });
+            if (!resp.ok) {
+                console.log("Failed to get log.");
+                return;
+            }
+            const datas = await resp.json();
+            console.log(datas);
+        } catch (e) {
+            console.log("fetchGetLog error.");
+            return;
+        }
+    }
+
     const stickerStyle = {
         position: 'absolute',
         top: '75px',
@@ -69,6 +99,19 @@ const Nav = () => {
         zIndex: 1000
     };
 
+    const modalStyle = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        bgcolor: 'background.paper',
+        borderColor: 'rgb(11, 53, 101)',
+        borderWidth: '5px',
+        borderStyle: 'solid',
+        boxShadow: 24,
+        p: 2,
+    }
+
     return (
         <div>
             <div className='bg-[#0b3565] hover:bg-white transition duration-500 flex flex-row justify-between items-center py-5' onMouseOver={hoverOver} onMouseOut={hoverOut}>
@@ -86,12 +129,31 @@ const Nav = () => {
                     <button className={`${isHovered ? 'text-[#0b3565]' : 'text-white'} text-xl font-bold mr-10`} onClick={handleClick}>{info.name}</button> :
                     <Link to="/login"><div className={`${isHovered ? 'text-[#0b3565]' : 'text-white'} text-xl font-bold mr-10`}>로그인</div></Link>}
             </div>
-            {sticker && (
+            {sticker && ((info.email === "housekjh@naver.com") ?
+                <div style={stickerStyle}>
+                    <div style={tailStyle}></div>
+                    <div className='flex flex-col justify-center items-center gap-2'>
+                        <button className='text-[18px] text-[#0b3565] font-[1000] text-center' onClick={handleLogPage}>기록조회</button>
+                        <button className='text-[18px] text-[#0b3565] font-[1000] text-center' onClick={handleLogout}>로그아웃</button>
+                    </div>
+                </div> :
                 <div style={stickerStyle}>
                     <div style={tailStyle}></div>
                     <button className='text-[18px] text-[#0b3565] font-[1000] text-center' onClick={handleLogout}>로그아웃</button>
                 </div>
             )}
+            <Modal open={openModal}>
+                <Box sx={modalStyle} className="rounded-lg w-auto">
+                    <div>
+                        <div className='w-[1200px] h-[600px]'>
+                            <div className='flex justify-center items-center'>
+                                <button onClick={closeModal}>닫기</button>
+                                {modalTag}
+                            </div>
+                        </div>
+                    </div>
+                </Box>
+            </Modal>
         </div>
     );
 }

@@ -29,9 +29,7 @@ function App() {
             const [key, value] = pair.split('=');
             userInfoObject[key.trim()] = value.trim();
           });
-
           setInfo(userInfoObject);
-
         } else {
           setLogin(false);
         }
