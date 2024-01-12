@@ -6,6 +6,7 @@ import { isLoggedIn, sideBarState, sideBarToggle, userInfo } from './Atoms';
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Link } from 'react-router-dom';
 import { Box, Modal } from '@mui/material';
+import { FaWindowClose } from "react-icons/fa";
 
 const Nav = () => {
     const [isHovered, setIsHovered] = useState(false);
@@ -129,11 +130,11 @@ const Nav = () => {
                     <button className={`${isHovered ? 'text-[#0b3565]' : 'text-white'} text-xl font-bold mr-10`} onClick={handleClick}>{info.name}</button> :
                     <Link to="/login"><div className={`${isHovered ? 'text-[#0b3565]' : 'text-white'} text-xl font-bold mr-10`}>로그인</div></Link>}
             </div>
-            {sticker && ((info.email === "housekjh@naver.com") ?
+            {sticker && (info && (info.email === "housekjh@naver.com") ?
                 <div style={stickerStyle}>
                     <div style={tailStyle}></div>
                     <div className='flex flex-col justify-center items-center gap-2'>
-                        <button className='text-[18px] text-[#0b3565] font-[1000] text-center' onClick={handleLogPage}>기록조회</button>
+                        <button className='text-[18px] text-[#0b3565] font-[1000] text-center' onClick={handleLogPage}>업무기록</button>
                         <button className='text-[18px] text-[#0b3565] font-[1000] text-center' onClick={handleLogout}>로그아웃</button>
                     </div>
                 </div> :
@@ -147,8 +148,12 @@ const Nav = () => {
                     <div>
                         <div className='w-[1200px] h-[600px]'>
                             <div className='flex justify-center items-center'>
-                                <button onClick={closeModal}>닫기</button>
-                                {modalTag}
+                                <div className='w-[1200px] flex flex-col justify-center items-center relative'>
+                                    <div className='flex justify-between items-center mt-[10px]'>
+                                        <div></div><div className='text-xl text-center font-[1000]'>업무기록 대시보드</div><button className='text-3xl text-[#0b3565] font-extrabold absolute left-[1170px] top-[-5px]' onClick={closeModal}><FaWindowClose /></button>
+                                    </div>
+                                    {modalTag}
+                                </div>
                             </div>
                         </div>
                     </div>

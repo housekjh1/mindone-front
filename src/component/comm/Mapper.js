@@ -73,7 +73,11 @@ const Mapper = () => {
             const getIp = await res.json();
             const url = `${process.env.REACT_APP_SERVER}log`;
             const formData = new FormData();
-            formData.append("name", info.name);
+            if (info != null || info != undefined) {
+                formData.append("name", info.name);
+            } else {
+                formData.append("name", "비회원");
+            }
             formData.append("ip", getIp.ip);
             formData.append("poolCode", pool);
             formData.append("predictTime", predictTime);
@@ -126,7 +130,7 @@ const Mapper = () => {
                 <div className='border-[#0b3565] border-[2px] rounded mt-[25px] w-[1100px] h-[500px] flex flex-col justify-center items-center'>
                     <form className='mt-[-15px]'>
                         <div className='flex flex-row gap-2.5'>
-                            <input ref={dt} className='border-2' type='date' id='dt' name='dt' />
+                            <input ref={dt} className='border-2' type='date' id='dt' name='dt' min='2018-01-03' max='2022-12-30' />
                             <select ref={selHour} className='border-2' id='selHour' name='selHour' >
                                 <option value=''>-- 시간 선택 --</option>
                                 {optHour}
