@@ -28,6 +28,7 @@ const Mapper = () => {
 
     const closeModal = () => {
         setOpenModal(false);
+        setGraphTag();
     }
 
     const hour = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"];
@@ -116,7 +117,6 @@ const Mapper = () => {
     }
 
     const handleHotspotClick = (x) => {
-        setGraphTag();
         setSelectedX(x);
         setOpenModal(true);
     };
@@ -175,14 +175,14 @@ const Mapper = () => {
                     <Indicator left={1008} top={235} width={57} height={38} handleClick={() => handleHotspotClick('B배수지')} />
                     <Indicator left={393} top={320} width={57} height={38} handleClick={() => handleHotspotClick('E배수지')} />
                     <Indicator left={450} top={320} width={57} height={38} handleClick={() => handleHotspotClick('F배수지')} />
-                    <Indicator left={653} top={400} width={57} height={39} handleClick={() => handleHotspotClick('R배수지')} />
+                    {/* <Indicator left={653} top={400} width={57} height={39} handleClick={() => handleHotspotClick('R배수지')} /> */}
                     <Indicator left={725} top={400} width={57} height={38} handleClick={() => handleHotspotClick('Q배수지')} />
                     <Indicator left={1090} top={413} width={56} height={38} handleClick={() => handleHotspotClick('P배수지')} />
                     <Indicator left={373} top={474} width={57} height={38} handleClick={() => handleHotspotClick('O배수지')} />
                     <Indicator left={430} top={474} width={58} height={38} handleClick={() => handleHotspotClick('N배수지')} />
                     <Indicator left={488} top={474} width={57} height={38} handleClick={() => handleHotspotClick('M배수지')} />
                     <Indicator left={545} top={474} width={57} height={38} handleClick={() => handleHotspotClick('L배수지')} />
-                    <Indicator left={602} top={474} width={57} height={38} handleClick={() => handleHotspotClick('K배수지')} />
+                    {/* <Indicator left={602} top={474} width={57} height={38} handleClick={() => handleHotspotClick('K배수지')} /> */}
                     <Indicator left={659} top={474} width={58} height={38} handleClick={() => handleHotspotClick('J배수지')} />
                     <Indicator left={717} top={474} width={57} height={38} handleClick={() => handleHotspotClick('I배수지')} />
                     <Indicator left={774} top={474} width={57} height={38} handleClick={() => handleHotspotClick('H배수지')} />
