@@ -87,7 +87,7 @@ const Nav = () => {
                             <p className='font-[1000]'>사용자 :</p>&nbsp;<p>{item.name}</p>&nbsp;&nbsp;&nbsp;&nbsp;
                             <p className='font-[1000]'>IP 주소 :</p>&nbsp;<p>{item.ip}</p>&nbsp;&nbsp;&nbsp;&nbsp;
                             <p className='font-[1000]'>배수지 :</p>&nbsp;<p>{item.poolCode}</p>&nbsp;&nbsp;&nbsp;&nbsp;
-                            <p className='font-[1000]'>예측 시간 :</p>&nbsp;<p>{item.predictTime.replace('T', ' ')}</p>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <p className='font-[1000]'>예측 시간 :</p>&nbsp;<p>{item.predictTime.replace('T', ' ').slice(0, -3)}</p>&nbsp;&nbsp;&nbsp;&nbsp;
                             <p className='font-[1000]'>조회 시간 :</p>&nbsp;<p>{item.presentTime}</p>
                         </div>)
                     }
