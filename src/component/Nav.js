@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import logo_white from '../static/img/hd_logo.png';
 import logo_blue from '../static/img/hd_logo_ov.png';
 import { useRecoilState, useRecoilValue } from 'recoil';
@@ -17,6 +17,7 @@ const Nav = () => {
     const [sticker, setSticker] = useState(false);
     const [openModal, setOpenModal] = useState(false);
     const [modalTag, setModalTag] = useState();
+    const [logData, setLogData] = useState();
 
     const hoverOver = () => {
         setIsHovered(true);
@@ -50,8 +51,8 @@ const Nav = () => {
     }
 
     const handleLogPage = () => {
-        setOpenModal(true);
         fetchGetLog();
+        setOpenModal(true);
     }
 
     const closeModal = () => {
@@ -69,12 +70,31 @@ const Nav = () => {
                 return;
             }
             const datas = await resp.json();
-            console.log(datas);
+            setLogData(datas);
         } catch (e) {
             console.log("fetchGetLog error.");
             return;
         }
     }
+
+    useEffect(() => {
+        setModalTag(
+            <div className='border-[#0b3565] border-[2px] rounded mt-[25px] w-[1100px] h-[500px] overflow-auto'>
+                <div className='flex flex-col justify-center items-center gap-2 py-2'>
+                    {logData &&
+                        logData.map(item => <div key={item.seq} className='flex flex-row justify-center items-center p-2 rounded shadow-[0px_0px_10px_-2px_rgba(0,0,0,0.25)] w-[1000px]'>
+                            <p className='font-[1000]'>{item.seq}</p>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <p className='font-[1000]'>사용자 :</p>&nbsp;<p>{item.name}</p>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <p className='font-[1000]'>IP 주소 :</p>&nbsp;<p>{item.ip}</p>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <p className='font-[1000]'>배수지 :</p>&nbsp;<p>{item.poolCode}</p>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <p className='font-[1000]'>예측 시간 :</p>&nbsp;<p>{item.predictTime.replace('T', ' ')}</p>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <p className='font-[1000]'>조회 시간 :</p>&nbsp;<p>{item.presentTime}</p>
+                        </div>)
+                    }
+                </div>
+            </div>
+        )
+    }, [logData])
 
     const stickerStyle = {
         position: 'absolute',
