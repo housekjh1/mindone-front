@@ -7,3 +7,6 @@
 - React Icons
 - MUI
 - TW Elements
+
+## 시연영상
+- [AI 프로젝트](https://youtu.be/yTUWAttnKEA?si=giLonKbzndtD2DeO)
